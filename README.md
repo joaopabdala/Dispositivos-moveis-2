@@ -24,16 +24,30 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 
 ##  Sprints
 
+### Sprint 1 – Project Setup & Core UI (4 days)
+- [ ] Set up project structure *(0.5 day)*
+- [ ] Make the basic screens *(1.5 days)*
+- [ ] Connection with PocketBase *(2 days)*
 
-- [ ] Set up project structure
-- [ ] Make the basic screens
-- [ ] Connection with pocketbase  
-- [ ] User sign up and login system  
-- [ ] Make the lists work  
-- [ ] Implement tagging system  
-- [ ] View reading list  
-- [ ] Search by tags  
+---
 
-- [ ] Allow local lists for non-logged users  
-- [ ] Merge local list with user account on sign up  
-- [ ] Add personal notes to list items  
+### Sprint 2 – User Authentication (3 days)
+- [ ] User sign up and login system *(3 days)*
+
+---
+
+### Sprint 3 – Core List Features (5 days)
+- [ ] Make the lists work *(2 days)*
+- [ ] Implement tagging system *(1.5 days)*
+- [ ] View reading list *(1 day)*
+- [ ] Search by tags *(0.5 day)*
+
+---
+
+### Sprint 4 – Offline Mode & Notes (4 days)
+- [ ] Allow local lists for non-logged users *(1.5 days)*
+- [ ] Merge local list with user account on sign up *(1.5 days)*
+- [ ] Add personal notes to list items *(1 day)*
+
+
+
