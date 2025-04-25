@@ -5,11 +5,12 @@ export default function IndexScreen() {
     const router = useRouter();
   
     const handleLogin = () => {
-      router.push('/(auth)/profile');
+      router.push('/(auth)/(home)');
     };
 
     const handleRegister = () => {
-      router.push('/(auth)/register')
+        console.log('registrado')
+        router.push('/')
     }
   
     return (
@@ -17,11 +18,9 @@ export default function IndexScreen() {
         <TextInput style={styles.input} placeholder="Email" />
         <TextInput style={styles.input} placeholder="Password" secureTextEntry />
         <View style={styles.button}>
-          <Button title="Login" onPress={handleLogin} />
+          <Button title="Registar" onPress={handleRegister} />
         </View>
-        <Link href="/register">
-          <Text style={styles.register}>Create Account</Text>
-        </Link>
+    
       </View>
     );
   }
