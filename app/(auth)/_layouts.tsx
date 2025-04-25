@@ -1,4 +1,3 @@
-// app/(home)/_layout.tsx
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
 
