@@ -1,29 +1,27 @@
-import { Link, useRouter } from "expo-router";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Link, useRouter } from 'expo-router';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function _screen() {
-  const router = useRouter();
-
-  const handleLogin = () => {
-    console.log("TODO: login user!");
-    router.push("/(auth)/(home)/home");
-  };
-
-  return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Email" />
-      <TextInput style={styles.input} placeholder="Password" secureTextEntry />
-
-      <View style={styles.button}>
-        <Button title="Login" onPress={handleLogin} />
+export default function IndexScreen() {
+    const router = useRouter();
+  
+    const handleLogin = () => {
+      router.push('/(auth)/(home)');
+    };
+  
+    return (
+      <View style={styles.container}>
+        <TextInput style={styles.input} placeholder="Email" />
+        <TextInput style={styles.input} placeholder="Password" secureTextEntry />
+        <View style={styles.button}>
+          <Button title="Login" onPress={handleLogin} />
+        </View>
+        <Link href="/register">
+          <Text style={styles.register}>Create Account</Text>
+        </Link>
       </View>
+    );
+  }
 
-      <Link href="/register">
-        <Text style={styles.register}>Create Account</Text>
-      </Link>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
