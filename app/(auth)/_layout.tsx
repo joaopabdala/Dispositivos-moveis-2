@@ -1,0 +1,11 @@
+import { Drawer } from 'expo-router/drawer';
+
+export default function HomeLayout() {
+  return (
+    <Drawer>
+      <Drawer.Screen name="profile" options={{ title: 'Perfil' }} />
+      <Drawer.Screen name="home" options={{ title: 'Home' }} />
+      <Drawer.Screen name="logout" options={{ title: 'Logout' }} />
+    </Drawer>
+  );
+}
