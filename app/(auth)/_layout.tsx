@@ -9,6 +9,7 @@ export default function HomeLayout() {
       headerTintColor: 'black',
     }}>
       <Drawer.Screen name="profile" options={{ title: 'Perfil' }} />
+      <Drawer.Screen name="tags" options={{ title: 'Suas Tags' }} />
       <Drawer.Screen name="home" options={{ title: 'Home' }} />
       <Drawer.Screen name="logout" options={{ title: 'Logout' }} />
     </Drawer>

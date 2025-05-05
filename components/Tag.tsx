@@ -1,19 +1,24 @@
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/themed";
+import { blue } from "react-native-reanimated/lib/typescript/Colors";
+import { color } from "@rneui/base";
 
-type TagProps = {
-  name: string;
+export type TagProps = {
+    id: number
+  name: string
+  color?: string | null
 };
 
 const handleTagFilter = (name:string) => {
     console.log(name)
 }
 
-export default function Tag({ name }: TagProps) {
+export default function Tag({ name, color=null }: TagProps) {
   return (
     <TouchableOpacity
-    className="flex-row items-center bg-blue-500 rounded-full px-4 py-1 self-start"
+    className="flex-row items-center rounded-full px-4 py-1 self-start"
+    style={{ backgroundColor: color ?? "#3B82F6" }} // azul padrão
     onPress={() => handleTagFilter(name)}
     >
       <Text className="text-white mr-2">{name}</Text>
@@ -21,7 +26,7 @@ export default function Tag({ name }: TagProps) {
         <Icon
           backgroundColor="#D9D9D9"
           color="#8D8686"
-          size="12"
+          size={12}
           name="check"
           type="ant-design"
         />
