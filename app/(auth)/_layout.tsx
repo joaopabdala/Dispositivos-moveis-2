@@ -2,10 +2,16 @@ import { Drawer } from 'expo-router/drawer';
 
 export default function HomeLayout() {
   return (
-    <Drawer>
+    <Drawer screenOptions={{
+      headerStyle :{
+        backgroundColor: 'red'
+      },
+      headerTintColor: 'black',
+    }}>
       <Drawer.Screen name="profile" options={{ title: 'Perfil' }} />
-      <Drawer.Screen name="home" options={{ title: 'Home' }} />
+      <Drawer.Screen name="tags" options={{ title: 'Suas Tags' }} />
       <Drawer.Screen name="logout" options={{ title: 'Logout' }} />
+      <Drawer.Screen name="readings/create-reading" options={{ title: 'Criar Reading' }} />
     </Drawer>
   );
 }
