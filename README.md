@@ -25,8 +25,8 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 ##  Sprints
 
 ### Sprint 1 – Project Setup & Core UI (4 days)
-- [ ] Set up project structure *(0.5 day)*
-- [ ] Make the basic screens *(1.5 days)*
+- [x] Set up project structure *(0.5 day)*
+- [x] Make the basic screens *(1.5 days)*
 - [ ] Connection with PocketBase *(2 days)*
 
 ---
@@ -49,5 +49,8 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 - [ ] Merge local list with user account on sign up *(1.5 days)*
 - [ ] Add personal notes to list items *(1 day)*
 
-
+## Updates since last checkpoint 
+- Used react native elements for some inputs and for Icons. 
+- Implemented Readings and Tag mocks. 
+- Created Tag and Reading components.
 
