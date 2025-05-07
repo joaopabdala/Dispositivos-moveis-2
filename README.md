@@ -54,3 +54,6 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 - Implemented Readings and Tag mocks. 
 - Created Tag and Reading components.
 
+### checkpoint 2, entrega parcial das telas:
+https://drive.google.com/file/d/1SagALQb2vzIem7Dkvlyqpbpymh-aZrDa/view
+
