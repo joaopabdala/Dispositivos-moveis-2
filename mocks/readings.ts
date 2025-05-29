@@ -7,7 +7,7 @@ export const readings: readingsProps[] = [
         title: "Phantom Interviewers Over Rivette",
         link: "http://www.dvdbeaver.com/rivette/ok/phantomint.html",
         tag_ids: [1, 2],
-        created_at: new Date("2025-05-04"),
+        created: new Date("2025-05-04"),
         read_at: new Date("2025-05-05"),
     },
     {
@@ -15,7 +15,7 @@ export const readings: readingsProps[] = [
         title: "Interview with Luc Moullet by John Hughes and Bill Krohn",
         link: "https://kinoslang.blogspot.com/2014/03/interview-with-luc-moullet-by-john.html",
         tag_ids: [1, 3, 4, 5, 6],
-        created_at: new Date("2025-05-04"),
+        created: new Date("2025-05-04"),
         read_at: null,
     }
 ]

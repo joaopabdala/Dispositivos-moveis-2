@@ -5,7 +5,7 @@ import { blue } from "react-native-reanimated/lib/typescript/Colors";
 import { color } from "@rneui/base";
 
 export type TagProps = {
-    id: number
+    id: string
   name: string
   color?: string | null
 };
@@ -17,6 +17,9 @@ export default function Tag({
   onPress,
   selected = false
 }: TagProps & { onPress?: () => void; selected?: boolean }) {
+
+
+  
     return (
     <TouchableOpacity
       className="flex-row items-center rounded-full px-4 py-1 self-start"
