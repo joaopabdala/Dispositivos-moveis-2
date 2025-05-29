@@ -153,6 +153,7 @@ export default function profile() {
                 name={item.name}
                 id={item.id}
                 key={item.id}
+                color={item.color}
               />
             ))}
           </View>

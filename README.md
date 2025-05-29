@@ -6,9 +6,9 @@ Reading List is an app where you basically... keep track of your reading list. I
 
 
 Goals:
-- [ ] Authentication
-- [ ] Lists working 
-- [ ] Tag search
+- [x] Authentication
+- [x] Lists working 
+- [x] Tag search
 Extra goals:
 - [ ] Lists working without login
 - [ ] If the user decides to create an account later it will merge the local lists in his account
@@ -27,20 +27,20 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 ### Sprint 1 – Project Setup & Core UI (4 days)
 - [x] Set up project structure *(0.5 day)*
 - [x] Make the basic screens *(1.5 days)*
-- [ ] Connection with PocketBase *(2 days)*
+- [x] Connection with PocketBase *(2 days)*
 
 ---
 
 ### Sprint 2 – User Authentication (3 days)
-- [ ] User sign up and login system *(3 days)*
+- [x] User sign up and login system *(3 days)*
 
 ---
 
 ### Sprint 3 – Core List Features (5 days)
-- [ ] Make the lists work *(2 days)*
-- [ ] Implement tagging system *(1.5 days)*
-- [ ] View reading list *(1 day)*
-- [ ] Search by tags *(0.5 day)*
+- [x] Make the lists work *(2 days)*
+- [x] Implement tagging system *(1.5 days)*
+- [x] View reading list *(1 day)*
+- [x] Search by tags *(0.5 day)*
 
 ---
 
@@ -51,9 +51,11 @@ https://www.figma.com/design/SWW3d2fG2JVy9dLZJvnp5g/reading-list-andres?node-id=
 
 ## Updates since last checkpoint 
 - Used react native elements for some inputs and for Icons. 
-- Implemented Readings and Tag mocks. 
+- Implemented Readings and Tag mocks.   
 - Created Tag and Reading components.
-
+- Established connection with pocketbase
+- Token and id management with Zustand
+- Configured PocketBase to function as an API
 ### checkpoint 2, entrega parcial das telas:
 https://drive.google.com/file/d/1SagALQb2vzIem7Dkvlyqpbpymh-aZrDa/view
 
