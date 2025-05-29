@@ -3,12 +3,56 @@ import { Button } from "@rneui/themed";
 import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import { TextInput, View } from "react-native";
+import api from "../pocketbase";
+import setUserToken from "../states/auth-service";
+import axios from "axios";
 
 export default function IndexScreen() {
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    router.push("/(auth)/profile");
+  const { setUser } = setUserToken();
+
+  const handleLogin = async () => {
+    console.log(email, password);
+
+    try{
+      const response = await api.post(
+              "/collections/users/auth-with-password",
+              {
+                identity: email,
+                password: password,
+              }
+            );
+            if(response.data["token"]){
+             setUser(response.data["token"], response.data["record"]["id"]);
+              router.push("/(auth)/profile");
+            }
+
+    } catch (error) {
+     if (axios.isAxiosError(error)) {
+    if (error.response) {
+      const { code, message, data } = error.response.data;
+      console.error("Erro de autenticação:", message);
+
+      if (code === 400 || message === "Failed to authenticate.") {
+        alert("Email ou senha inválidos.");
+      } else {
+        alert("Erro no login. Tente novamente.");
+      }
+    } else if (error.request) {
+      console.error("Sem resposta do servidor:", error.request);
+      alert("Sem resposta do servidor. Verifique sua conexão.");
+    } else {
+      console.error("Erro na requisição:", error.message);
+      alert("Erro inesperado. Tente novamente mais tarde.");
+    }
+  } else {
+    console.error("Erro desconhecido:", error);
+    alert("Erro desconhecido.");
+  }
+    }
   };
 
   const handleRegister = () => {
@@ -30,6 +74,8 @@ export default function IndexScreen() {
         <Icon type="MaterialCommunityIcons" name="email" />
         <TextInput
           placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
           className="flex-1 ml-2 text-base"
           placeholderTextColor="#888"
         />
@@ -44,6 +90,8 @@ export default function IndexScreen() {
         />
         <TextInput
           placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
           secureTextEntry={passwordSecure}
           className="flex-1 ml-2 text-base text-black"
           placeholderTextColor="#888"

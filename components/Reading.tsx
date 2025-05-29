@@ -1,16 +1,19 @@
 import { View, Text, TouchableOpacity, Linking } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Icon } from "@rneui/themed";
-import Tag from "./Tag";
+import Tag, { TagProps } from "./Tag";
 import { tags as allTags } from "../mocks/tags";
+import api from "../pocketbase";
+import setUserToken from "../states/auth-service";
+import { useFocusEffect } from "expo-router";
 
 export type readingsProps = {
   id: number;
   title: string;
   link: string;
-  tag_ids: number[] | null;
-  created_at: Date;
-  read_at: Date | null;
+  tags_ids: string[] | null;
+  created: Date | undefined;
+  read_at: Date | string | null;
 };
 
 const handleLinkPress = (link: string) => {
@@ -21,13 +24,69 @@ export default function Reading({
   id,
   title,
   link,
-  tag_ids,
-  created_at,
+  tags_ids,
+  created,
   read_at,
 }: readingsProps) {
   const [expanded, setExpanded] = useState(false);
-  const readingTags = tag_ids ? allTags.filter(tag => tag_ids.includes(tag.id)) : [];
 
+  const [localReadAt, setLocalReadAt] = React.useState(read_at);
+  const [tags, setTags] = useState([]);
+
+  const fetchTagsByIds = async (ids: string[]) => {
+    if (!token || ids.length === 0) return;
+
+    try {
+      const filter = ids.map((id) => `id="${id}"`).join(" || ");
+      const response = await api.get(
+        `/collections/tags/records?filter=${encodeURIComponent(filter)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setTags(response.data.items);
+    } catch (error) {
+      console.log("Erro ao buscar tags:", error);
+    }
+  };
+
+  const { token } = setUserToken();
+  const handleMarkAsRead = async (id: string) => {
+    let read_at_change = "";
+
+    if (localReadAt == "" || localReadAt == null) {
+      read_at_change = new Date().toISOString();
+    }
+
+    try {
+      await api.patch(
+        `/collections/readings/records/${id}`,
+        {
+          read_at: read_at_change,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setLocalReadAt(read_at_change);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      if (tags_ids && tags_ids.length > 0) {
+        fetchTagsByIds(tags_ids);
+      }
+    }, [token, tags_ids])
+  );
 
   return (
     <TouchableOpacity
@@ -36,11 +95,13 @@ export default function Reading({
     >
       <Text className="text-black mr-2 text-xl">{title}</Text>
       <Text className="self-end">
-        {created_at.toLocaleDateString("pt-BR", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })}
+        {created != null
+          ? created.toLocaleDateString("pt-BR", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })
+          : "Data não disponível"}
       </Text>
       {expanded && (
         <>
@@ -51,9 +112,14 @@ export default function Reading({
           <View>
             <Text className="mb-2">Tags:</Text>
             <View className="flex-row flex-wrap gap-2">
-            {readingTags.map((tag) => (
-                  <Tag color={tag.color} id={tag.id} key={tag.id} name={tag.name} />
-                ))}
+              {tags.map((tag: TagProps) => (
+                <Tag
+                  color={tag.color}
+                  id={tag.id}
+                  key={tag.id}
+                  name={tag.name}
+                />
+              ))}
             </View>
           </View>
 
@@ -61,11 +127,12 @@ export default function Reading({
             <Text>Read:</Text>
             <TouchableOpacity
               className={`${
-                read_at == null ? "bg-[#D9D9D9]" : "bg-blue-500"
+                localReadAt == "" ? "bg-[#D9D9D9]" : "bg-blue-500"
               } rounded-full p-2`}
+              onPress={() => handleMarkAsRead(id.toString())}
             >
               <Icon
-                color={read_at == null ? "black" : "white"}
+                color={localReadAt == "" ? "black" : "white"}
                 size={12}
                 name="check"
                 type="ant-design"
